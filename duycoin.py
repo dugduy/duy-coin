@@ -1,7 +1,8 @@
 from random import randint
 class duycoin:
-    def __init__(self,release,name,release_probably) -> None:
+    def __init__(self,release,name,release_probably,cost=0.001) -> None:
         # price in usd
+        self.cost=cost
         self.price=0
         self.name=name
         self.release=release
@@ -10,7 +11,7 @@ class duycoin:
     def buy(self,coins):
         if coins<=self.release:
             print('Buying', coins)
-            self.price+=0.001*coins
+            self.price+=self.cost*coins
             self.release-=coins
             print(self.name,'cost',self.price,'; remain',self.release)
             self.release_new()
@@ -19,7 +20,7 @@ class duycoin:
             return 0
     def cell(self,coins):
         print('Celling', coins)
-        self.price-=0.001*coins
+        self.price-=self.cost*coins
         self.release+=coins
         print(self.name,'cost',self.price,'; remain',self.release)
         self.release_new()
@@ -28,7 +29,7 @@ class duycoin:
             self.release+=1
             print('Released 1 coin!')
 
-dugduy=duycoin(100,'DugDuy coin',3)
-for i in range(5):
-    dugduy.buy(randint(0,4))
+# dugduy=duycoin(100,'DugDuy coin',3)
+# for i in range(5):
+#     dugduy.buy(randint(0,4))
 # print(dugduy.price)
